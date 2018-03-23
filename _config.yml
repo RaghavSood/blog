@@ -1,4 +1,4 @@
-permalink: /blog/:year/:month/:day/:title
+permalink: /:year/:month/:day/:title
 markdown: kramdown
 highlighter: rouge
 kramdown:
@@ -9,7 +9,7 @@ plugins:
   - jekyll-sitemap
 name:         Raghav Sood
 description:  It's a blog
-url:          https://raghavsood.com/blog
+url:          https://raghavsood.com
 author:
   twitter: ARaghavSood
 timezone: Pacific/Auckland
