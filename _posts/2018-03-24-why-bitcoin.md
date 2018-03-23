@@ -72,7 +72,11 @@ By using proof of work to limit the creation speed of blocks, Bitcoin creates it
 
 When all of these layers are combined, you have a peer-to-peer electronic cash system.
 
-### References
+## Further Reading
+
+Bitcoin is a vast and complex system, with many nuances. It's impossible to cover it in a blog post. For further information, I suggest reading [Mastering Bitcoin](https://bitcoinbook.info/), [Bitcoin and Cryptocurrency Technologies](http://bitcoinbook.cs.princeton.edu/), and, of course, the [Bitcoin Whitepaper](https://bitcoin.org/bitcoin.pdf).
+
+## References
 
 [^1]: Nakamoto, S. (2008). *Bitcoin: A peer-to-peer electronic cash system*.
 [^2]: Dwork, C., & Naor, M. (1992, August). *Pricing via processing or combatting junk mail*. In Annual International Cryptology Conference (pp. 139-147). Springer, Berlin, Heidelberg.
