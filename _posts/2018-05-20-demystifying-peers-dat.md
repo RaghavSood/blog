@@ -265,7 +265,7 @@ go get -u github.com/RaghavSood/bitpeers/cmd/bitpeers
 
 If your go environment is set up properly, you should now have a `bitpeers` command available. If not, try finding your `GOBIN` (`GOPATH/bin`) and adding it to your `PATH`.
 
-`bitpeers` to easily dump `peers.dat` addresses as either human-readable plaintext or JSON. It accepts three flags:
+`bitpeers` allows you to easily dump `peers.dat` addresses as either human-readable plaintext or JSON. It accepts three flags:
 
 {% highlight shell %}
 Usage of bitpeers:
