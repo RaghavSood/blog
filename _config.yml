@@ -9,7 +9,8 @@ plugins:
   - jekyll-sitemap
 name:         Raghav Sood
 description:  It's a blog
-url:          https://raghavsood.com
+url:          https://raghavsood.com/blog
+baseurl:      "/blog"
 author:
   twitter: ARaghavSood
 timezone: Pacific/Auckland

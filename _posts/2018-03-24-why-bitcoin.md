@@ -1,8 +1,6 @@
 ---
 layout: post
 title: Why Bitcoin Changed The Game
-categories:
-- blog
 ---
 
 Bitcoin did not spawn out of nothing. The fundamental building blocks of Bitcoin were not new, but instead combined in a novel way to fix shortcomings in the individual components. This post aims to shed a little light on where the basics of Bitcoin originated, and why Bitcoin was able to succeed in creating a peer-to-peer electronic cash system where others before it failed.
