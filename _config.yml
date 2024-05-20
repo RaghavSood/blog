@@ -6,7 +6,6 @@ kramdown:
     hard_wrap: false
 plugins:
   - jekyll-feed
-  - jekyll-sitemap
 name:         Raghav Sood
 description:  It's a blog
 url:          https://raghavsood.com/blog
