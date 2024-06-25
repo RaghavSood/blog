@@ -1,3 +1,4 @@
 _site/
 .devenv/
 *.sw*
+.DS_Store
