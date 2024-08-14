@@ -1,6 +1,6 @@
 ---
-layout: post
 title: Installing NixOS on an OVH/Kimsufi/SoYouStart server
+tags: nix nixos
 ---
 
 I've been running NixOS servers for a few years now, largely hosting them across a mix of Mini PCs, DigitalOcean, Hetzner, and more recently Contabo.

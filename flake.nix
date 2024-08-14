@@ -26,6 +26,9 @@
               modules = [
                 {
                   packages = with pkgs; [ (jekyll.override { withOptionalDependencies = true; }) ];
+                  languages.ruby = {
+                    enable = true;
+                  };
 
                   enterShell = ''
                     echo "blog shell activated!"

@@ -1,6 +1,6 @@
 ---
-layout: post
 title: Using Nix flakes and fly.io without Docker
+tags: nix nixpkgs fly.io
 ---
 
 Admittedly, the title is not entirely accurate - we still use Docker, but successfully get away with not having to install it locally.

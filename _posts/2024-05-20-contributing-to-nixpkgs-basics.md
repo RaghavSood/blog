@@ -1,6 +1,6 @@
 ---
-layout: post
 title: Contributing to nixpkgs - Part 1 - Basic Contributions
+tags: nixpkgs
 ---
 
 For many, contributing to [nixpkgs](https://github.com/NixOS/nixpkgs) can be a daunting task - the repository is extremely active, with thousands of PRs going in every week. With the breadth of what's included in nixpkgs spanning everything from bootstrapping an OS install to npm packages, it can be hard to know where to start.
@@ -37,7 +37,7 @@ There are a few ways to make a meaningful contribution. Most folks start out by 
 
 If you already have a contribution in mind, you can skip this section. If you're looking for something to work on, here are a few ways to find something:
 
-- **Look for issues**: The [nixpkgs issue tracker](https://github.com/NixOS/nixpkgs/issues) has frequent requests for new package additions or updates. Scrolling through this list can provide some opportunities.[^1]
+- **Look for issues**: The [nixpkgs issue tracker](https://github.com/NixOS/nixpkgs/issues) has frequent requests for new package additions or updates. Scrolling through this list can provide some opportunities.[[If you pick an open issue, make sure to mention `Closes #123` in your PR description to automatically close the issue when the PR is merged.::lsn]]
 - **Check failing builds**: Visit Hydra's latest build for [nixpkgs#trunk](https://hydra.nixos.org/jobset/nixpkgs/trunk/evals) and take a look at the `Newly Failing Jobs` and `Still Failing Jobs` to see if anything looks interesting.
 - **Contribute without code**: There are countless opportunities for things such as documenation improvements, PR review, and other general tasks. We won't touch upon these in this post, but you can filter pull requests by tags such as [has: documenation](https://github.com/NixOS/nixpkgs/pulls?q=is%3Aopen+is%3Apr+label%3A%228.has%3A+documentation%22) to see how others are making such contributions.
 
@@ -81,7 +81,7 @@ When contributing to a large, living repository like nixpkgs, there's a few thin
 
 ## [Optional] Becoming a maintainer
 
-If you plan on becoming a listed maintainer[^2] for any package, it's best to do this step first - maintainer tracking in nixpkgs is done by evaluating a Nix expression, so you must be declared in the maintainer list before being added to a package or team.
+If you plan on becoming a listed maintainer for any package, it's best to do this step first - maintainer tracking in nixpkgs is done by evaluating a Nix expression, so you must be declared in the maintainer list before being added to a package or team.[[Listed maintainers are automatically tagged for Code Review by much of the automated tooling, such as GitHub and OfBorg.::rmn]]
 
 To do this, you need to add an entry to `maintainers/maintainer-list.nix`. This file is a list of maintainers, with each maintainer having a name, email, and a contain method.
 
@@ -138,7 +138,7 @@ A trivial update to a package will generally follow the same recipe, regardless 
 2. Update any hashes (within `src`, or for build requirements like go modules or cargo crates) to match their new state.
 3. If required, update any dependencies or inputs.
 4. Fix any tests, build issues, or other problems that arise from the update.
-5. If required, do some housekeeping by removing any inputs, patches, or other now-useless parts of the derivation[^3].
+5. If required, do some housekeeping by removing any inputs, patches, or other now-useless parts of the derivation.[[A nix derivation is a Nix program that describes how to achieve a specific task, such as building a package.::rmn]]
 
 In this post, we're simply going to make a trivial update that requires no fixes.
 
@@ -173,7 +173,7 @@ $ nix-prefetch-url --unpack https://github.com/superfly/flyctl/archive/v0.2.55.t
 117zl6pg9flr2ffhfjfy8a8svdc2gwd4s81vdgkb0lilmlbml968
 {% endhighlight %}
 
-This gives us the hash in the old, base32 format. However, current standards[^4] require that hashes in nixpkgs follow the SRI format. We can convert the hash using the `nix-hash` command:
+This gives us the hash in the old, base32 format. However, current standards[^4] require that hashes in nixpkgs follow the SRI format. We can convert the hash using the `nix-hash` command:[[`nixpkgs` is an incredibly large, complex intersection of thousands of contributors. Standards and styles change often, and it is common to find code in the repo that is written in an old manner. To ensure you're following the latest standards, it's best to refer to the latest PRs and commits in the repository that touch similar areas and read the description and reviews.::rmn]]
 
 {% highlight shell %}
 $ nix-hash --to-sri --type sha256 117zl6pg9flr2ffhfjfy8a8svdc2gwd4s81vdgkb0lilmlbml968
@@ -332,11 +332,11 @@ created by testing.(*T).Run in goroutine 1
 FAIL    github.com/superfly/flyctl/internal/appconfig   0.355s
 {% endhighlight %}
 
-It turns out that [one of](https://github.com/superfly/flyctl/pull/3430) the changes between 0.2.52 and 0.2.55 added some tests that require network access. Since we're building in a sandboxed environment[^5], this isn't possible. 
+It turns out that [one of](https://github.com/superfly/flyctl/pull/3430) the changes between 0.2.52 and 0.2.55 added some tests that require network access. Since we're building in a sandboxed environment.[[Derivations in `nixpkgs` are built in a sandbox with no network or filesystem access. Anything required by your program, such as dependencies (NPM packages, go modules, config files, etc.) must be explicitly provided. `buildGoModules` already provides a wrapper to download go moduels from the internet and pin them using `vendorHash`. However, if tests or other parts of the build process require network access, they will have to be skipped or patched to avoid it.::rmn]]
 
 We can fix this by disabling the tests. `buildGoModule` helpfully provides [a few options](https://github.com/NixOS/nixpkgs/blob/d616253e70a3476874d86974e9ef1d20629f6ab0/doc/languages-frameworks/go.section.md?plain=1#L255C21-L255C40) to remove tests from the checkPhase.
 
-Unfortunately, the test setup for go packages doesn't quite support the common `go test ./...` pattern, so we also need to override the `checkPhase` step[^6] of the build process.
+Unfortunately, the test setup for go packages doesn't quite support the common `go test ./...` pattern, so we also need to override the `checkPhase` step of the build process.[[A build consists of [multiple phases](https://nixos.org/manual/nixpkgs/stable/#sec-stdenv-phases).::lsn]]
 
 By disabling all of the `TestToTestMachineConfig` tests, we can get a successful build.
 
@@ -474,11 +474,3 @@ df4c4e9183ae flyctl: add RaghavSood as maintainer
 b57260da32c6 flyctl: 0.2.52 -> 0.2.55
 {% endhighlight %}
 
-# Notes/References
-
-[^1]: If you pick an open issue, make sure to mention `Closes #123` in your PR description to automatically close the issue when the PR is merged.
-[^2]: By being a listed maintainer, you'll be tagged by the PR automation when pull requests impacting your packages are opened. People may also tag you in issues or discussions pertaining to those packages or stacks.
-[^3]: A nix derivation is a Nix program that describes how to achieve a specific task, such as building a package.
-[^4]: `nixpkgs` is an incredibly large, complex intersection of thousands of contributors. Standards and styles change often, and it is common to find code in the repo that is written in an old manner. To ensure you're following the latest standards, it's best to refer to the latest PRs and commits in the repository that touch similar areas and read the description and reviews.
-[^5]: Derivations in `nixpkgs` are built in a sandbox with no network or filesystem access. Anything required by your program, such as dependencies (NPM packages, go modules, config files, etc.) must be explicitly provided. `buildGoModules` already provides a wrapper to download go moduels from the internet and pin them using `vendorHash`. However, if tests or other parts of the build process require network access, they will have to be skipped or patched to avoid it.
-[^6]: A build consists of [multiple phases](https://nixos.org/manual/nixpkgs/stable/#sec-stdenv-phases).

@@ -1,6 +1,6 @@
 ---
-layout: post
 title: Find Something to Fix
+tags: thoughts perspectives nixpkgs
 ---
 
 When I'm idling, I like to just... look at things. I might scroll HN, or trace random transactions on a blockchain explorer, or poke about in trending git repositories surfaced by [Github's Explore](https://github.com/explore).

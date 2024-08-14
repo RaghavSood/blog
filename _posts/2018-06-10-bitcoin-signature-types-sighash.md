@@ -1,6 +1,6 @@
 ---
-layout: post
 title: Bitcoin's Signature Types - SIGHASH
+tags: bitcoin sighash
 ---
 
 Using Bitcoin day to day, one takes signatures for granted. You sign a transaction when you want to spend BTC, and that's about it. It simply helps ensure that no one is spending your BTC without your permission (with said permission in the form of a digital signature). 

@@ -1,6 +1,6 @@
 ---
-layout: post
 title: Demystifying Bitcoin's peers.dat
+tags: bitcoin bitcoin-core golang
 ---
 
 Bitcoin uses a custom format to store peer information. Although the inbuilt JSON-RPC provides a helpful `getpeerinfo` method to list your active connections, it offers no method to query, dump, or otherwise access the information in peers.dat, which contains far more than just your active connections. Having access to the information in this file can be helpful for a number of reasons, such as finding out information about the network and finding more nodes than just your connections to broadcast transactions to.

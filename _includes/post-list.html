@@ -1,7 +1,0 @@
-<div class="notelist">
-    {% for post in site.posts %}
-    <ul class="listnotes list-unstyled">
-      <li><a href="/blog{{ post.url }}"><span class="date">{{ post.date | date_to_string }} | {% include read_time.html content=post.content %} &raquo;</span> {{ post.title }}</a></li>
-    </ul>
-    {% endfor %}
-</div><!--/.notelist -->

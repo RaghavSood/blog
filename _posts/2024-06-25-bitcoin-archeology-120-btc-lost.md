@@ -1,11 +1,11 @@
 ---
-layout: post
 title: "BTC Archeology: Where was 1.2 BTC sent in 2010?"
+tags: bitcoin burned.money crypto-forensics
 ---
 
 As part of building [burned.money](https://burned.money){:target="_BLANK"}, I've been trying to track down old cases of BTC that is likely lost.
 
-On July 14th 2010 (UTC), bitcointalk user `ksd5` started a [thread](https://bitcointalk.org/index.php?topic=359.0){:target="_BLANK"} talking about how they could not locate 1.2 BTC after playing around with the wallet to test double spend protection[^1].
+On July 14th 2010 (UTC), bitcointalk user `ksd5` started a [thread](https://bitcointalk.org/index.php?topic=359.0){:target="_BLANK"} talking about how they could not locate 1.2 BTC after playing around with the wallet to test double spend protection.[[Bitcoin protects against double spending using the Unspent Transaction Output model - Each transaction output is uniquely identified by it's transaction ID and index in the output list (vout). Each `txid:vout` pair can only be consumed once in the entire blockchain. If a subsequent transaction claims to spend from an already consumed pair, it is invalid and any blocks containing it are invalid.::rmn]]
 
 In summary, `ksd5` says that they:
 
@@ -17,21 +17,17 @@ In summary, `ksd5` says that they:
 
 Notably, at step 4, they did not make a new backup of the in-use `wallet.dat`.
 
-Early Bitcoin wallet managed addresses using a keypool, which pre-generated 100 addresses so that a backup would only have to be performed every 100 transactions or so. However, back in July 2010, this hadn't been implemented yet. It was only added in October 2010 by Satoshi[^2].
+Early Bitcoin wallet managed addresses using a keypool, which pre-generated 100 addresses so that a backup would only have to be performed every 100 transactions or so. However, back in July 2010, this hadn't been implemented yet.[[It was only added in [October 2010](https://bitcointalk.org/index.php?topic=1414.0){:target="_BLANK"} by Satoshi Nakamoto.::lsn]]
 
 As such, the Bitcoin Core client used by user `ksd5` would generate a new, random private key for each new address, which would then be stored in the `wallet.dat`.
 
 When the first backup was made in Step 2, the wallet would have only contained the private key for the address holding the 1.21 BTC (and previously used addresses, if any).
 
-Then, when the transaction was made in Step 3, a new private key was generated for the change address[^3] and stored in the `wallet.dat`.
+Then, when the transaction was made in Step 3, a new private key was generated for the change address and stored in the `wallet.dat`.[[A change address is an address in a Bitcoin transaction that sends any unused funds back to the sender's wallet. For improved privacy, most wallets will use a new, unused address for this.::lsn]]
 
 However, when the user copied the original backup back and overwrote the now-updated `wallet.dat`, this new key was lost. As far as the original backup was concerned, it had no knowledge of this change address, or the 1.2 BTC sent to it in the previous transaction.
 
-Upon learning that the keys were lost, `ksd5` declined to attempt recovery using any disk recovery tools as:
-
-> I'm not gonna bother trying to recover the file. It was only 1.20 BTC and I'm not gonna sweat the small stuff.
->
-> -- <cite><a href="https://bitcointalk.org/index.php?topic=359.msg3006#msg3006">ksd5, July 14 2010</a></cite>
+Upon learning that the keys were lost, `ksd5` declined to attempt recovery using any disk recovery tools as to deal with such "small stuff".[[I'm not gonna bother trying to recover the file. It was only 1.20 BTC and I'm not gonna sweat the small stuff.<br/><cite>---[ksd5, July 14 2010](https://bitcointalk.org/index.php?topic=359.msg3006#msg3006){:target="_BLANK"}</cite>::rmn]]
 
 The "small stuff", valued at ~0.012 USD in 2010, is worth ~73,000 USD today.
 
@@ -118,7 +114,7 @@ First, let's look at the second transaction.
 ![1PVGD99UorsotcKyZYKHSyMxTHpnth1vny outgoing transactions]({{ site.baseurl }}/img/120-btc-lost-trezor-1.png){: width="100%" }
 *Image from [Trezor's Blockbook](https://btc2.trezor.io/address/1PVGD99UorsotcKyZYKHSyMxTHpnth1vny){:target="_BLANK"}*
 
-The 1.2 BTC output sent to `1BDjntPz95d9Ppv7qmWqqY8EUfjF94oQvR` was subsequently [spent](https://btc2.trezor.io/tx/f9b53a53820d659220b7493a083669c08025423968f5e524a4967900635b8062){:target="_BLANK"} on 14th July 2010. While it is possible that `ksd5` managed to recover their keys after making the post[^4] and spend the coins, it does seem unlikely for 0.012 USD.
+The 1.2 BTC output sent to `1BDjntPz95d9Ppv7qmWqqY8EUfjF94oQvR` was subsequently [spent](https://btc2.trezor.io/tx/f9b53a53820d659220b7493a083669c08025423968f5e524a4967900635b8062){:target="_BLANK"} on 14th July 2010. While it is possible that `ksd5` managed to recover their keys after making the post[[Bitcoin Block Timestamps aren't 100% in line with real-world time, which can lead to discrepencies when comparing bitcointalk post timings against the blockchain.::lsn]] and spend the coins, it does seem unlikely for 0.012 USD.
 
 The address involved in the 0.01 BTC output, `15jJwkaxssfrq6jo82tRbHBorvfQ46GgpC`, is a little more interesting. It also [received](https://btc2.trezor.io/tx/77f6d7385e9f7c7dbafbcf9fdf10d6c98f8591cc13e2edd153bb03131f5feb2a){:target="_BLANK"} 0.01 BTC in the same transaction that funded 1.21 BTC to `1PVGD99UorsotcKyZYKHSyMxTHpnth1vny`, and has seen 312 transactions. This is a good candidate for a donation address.
 
@@ -152,9 +148,3 @@ As part of the [burned.money](https://burned.money){:target="_BLANK"} project, I
 These, combined with several other ways to destroy BTC, contribute to a permanent reduction in the circulating supply of Bitcoin.
 
 Having concluded this archaeological dig, I'll be adding the 1.2 BTC lost by `ksd5` to the [burned.money](https://burned.money){:target="_BLANK"} database under [16DsRFSCbv8aPMmDcbP4wYsS4FV9hf6rt2](https://burned.money/script/76a9143947b5155f8641756a90c935fbf61814a65ec4a288ac){:target="_BLANK"}.
-
-# Notes/references
-[^1]: Bitcoin protects against double spending using the Unspent Transaction Output model - Each transaction output is uniquely identified by it's transaction ID and index in the output list (vout). Each `txid:vout` pair can only be consumed once in the entire blockchain. If a subsequent transaction claims to spend from an already consumed pair, it is invalid and any blocks containing it are invalid.
-[^2]: [https://bitcointalk.org/index.php?topic=1414.0](https://bitcointalk.org/index.php?topic=1414.0){:target="_BLANK"}
-[^3]: A change address is an address in a Bitcoin transaction that sends any unused funds back to the sender's wallet. For improved privacy, most wallets will use a new, unused address for this.
-[^4]: Bitcoin Block Timestamps aren't 100% in line with real-world time, which can lead to discrepencies when comparing bitcointalk post timings against the blockchain.
