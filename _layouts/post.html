@@ -30,22 +30,22 @@
 <html lang="en">
 <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Knowledge Continuum" property="og:site_name"/>
+    <meta content="Notes | Raghav Sood" property="og:site_name"/>
     <meta content="A non-linear thread of important ideas weaved together to explore and understand the fabric of knowledge." property="og:description">
-    <meta content="{{ site.url }}/about/" property="article:author">
+    <meta content="Raghav Sood" property="article:author">
 
     {%- if page.title -%}
     <meta content="{{ page.title }}" property="og:title">
     <meta content="article" property="og:type">
-    <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+    <meta content="{{ site.url }}blog{{ page.url }}" property="og:url">
     {%- else -%}
     <meta content="website" property="og:type">
-    <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+    <meta content="{{ site.url }}blog{{ page.url }}" property="og:url">
     {%- endif -%}
 
     <title>{{site.heading}}</title>
 
-    <link rel="canonical" href="{{site.url}}{{page.url}}"/>
+    <link rel="canonical" href="{{site.url}}blog{{page.url}}"/>
     <link href="/blog/assets/css/Style.css" rel="stylesheet" media="all" class="default" />
     <link href="/blog/assets/css/Util.css" rel="stylesheet" media="all" class="default" />
 	<link href="/blog/assets/css/vendor/Katex.css" rel="stylesheet" media="all" class="default"/>
