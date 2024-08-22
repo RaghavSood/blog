@@ -63,7 +63,7 @@ body {
     border-left: 1px solid var(--primary-border-color);
     border-right: 1px solid var(--primary-border-color);
     border-bottom: 1px solid var(--primary-border-color);
-    width: 60%;
+    width: 65%;
     position: absolute;
     top: 0px;
 }
@@ -201,8 +201,8 @@ code {
 pre code {
     font-family: Consolas, 'Courier New', Courier, monospace;
     display: inline-block;
-    overflow: auto !important;
-    white-space: pre-line !important;       
+    overflow: scroll !important;
+    white-space: pre !important;       
     word-wrap: break-word !important;       
     padding: 15px 15px  15px 15px;
     vertical-align:middle;
