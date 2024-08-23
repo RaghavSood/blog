@@ -1046,3 +1046,13 @@ Running this script produced the following tree:
   ```
 
 Transaction IDs marked with a `*` are detectable through multiple paths in the tree - I only process them the first time they are encountered.
+
+## Bitbills Today
+
+With this set of addresses now available, I was able to load the entire Bitbills collection onto [collectible.money](https://collectible.money){:target="_BLANK"} under [Bitbills](https://collectible.money/creator/bitbills){:target="_BLANK"}.
+
+As of this post's publication, a total of 928 Bitbills were produced. Today, just 395 remain intact, with only 26 20 BTC Bitbills and 27 10 BTC Bitbills intact respectively.
+
+1 BTC Bitbills were produced in the largest quantity, and also have the highest peel rate - nevertheless, I believe a significant portion of the 293 remaining 1 BTC Bitbills are lost to time, given the lower redemption rate than other denominations.
+
+This also means that today, only 26 full sets of 1, 5, 10, and 20 BTC Bitbills can be assembled.
