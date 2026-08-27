@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
-    devenv.url = "github:cachix/devenv/1e4701fb1f51f8e6fe3b0318fc2b80aed0761914";
+    devenv.url = "github:cachix/devenv";
   };
 
   nixConfig = {
@@ -25,10 +25,14 @@
               inherit inputs pkgs;
               modules = [
                 {
-                  packages = with pkgs; [ (jekyll.override { withOptionalDependencies = true; }) ];
                   languages.ruby = {
                     enable = true;
+                    package = pkgs.ruby_3_4;
                   };
+
+                  # kramdown-math-katex renders math via execjs, which needs
+                  # a JavaScript runtime at build time
+                  packages = with pkgs; [ nodejs ];
 
                   enterShell = ''
                     echo "blog shell activated!"
