@@ -47,7 +47,7 @@ tagline: # subheading won't work without a tagline,
   enabled: false
   name: An experiment to spark conversations
 copyright: 
-  year: 2024
+  year: 2026
   msg: Raghav Sood # This is a mandatory attribute for copyright to be displayed
 
 user:
