@@ -1,4 +1,5 @@
 _site/
 .devenv/
+workshop/
 *.sw*
 .DS_Store
